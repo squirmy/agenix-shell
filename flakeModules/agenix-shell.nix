@@ -112,8 +112,8 @@ in {
             umask u=r,g=,o=
             test -f "${secret.file}" || echo '[agenix] WARNING: encrypted file ${secret.file} does not exist!'
             test -d "$(dirname "${secret.path}")" || echo "[agenix] WARNING: $(dirname "$TMP_FILE") does not exist!"
+            echo ${lib.getExe config.agenix-shell.package} --decrypt "''${IDENTITIES[@]}" -o "${secret.path}" "${secret.file}"
             LANG=${config.i18n.defaultLocale or "C"} ${lib.getExe config.agenix-shell.package} --decrypt "''${IDENTITIES[@]}" -o "${secret.path}" "${secret.file}"
-            echo "$LANG"
           )
 
           chmod ${secret.mode} "${secret.path}"
