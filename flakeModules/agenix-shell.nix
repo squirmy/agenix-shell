@@ -106,7 +106,7 @@ in {
           test "''${#IDENTITIES[@]}" -eq 0 && echo "[agenix] WARNING: no readable identities found!"
 
           mkdir -p "${cfg.secretsPath}"
-          # shellcheck disable=SC2193
+          # shellcheck disable=SC2193,SC2050
           [ "${secret.path}" != "${cfg.secretsPath}/${secret.name}" ] && mkdir -p "$(dirname "${secret.path}")"
           (
             umask u=r,g=,o=
